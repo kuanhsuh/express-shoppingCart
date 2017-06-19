@@ -15,7 +15,11 @@
           <% products.forEach(function(product){ %>
             <tr>
               <td><%= product.item.title %></td>
-              <td>x <%= product.qty %></td>
+              <td>
+                <a href="/cart/reduce/<%= product.item._id %>" class="btn btn-default btn-xs" role="button">-</a>
+                <%= product.qty %>
+                <a href="/cart/add/<%= product.item._id %>" class="btn btn-default btn-xs" role="button">+</a>
+              </td>
               <td><%= product.item.price %>$</td>
               <td><%= product.price %>$</td>
             </tr>

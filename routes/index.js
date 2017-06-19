@@ -119,4 +119,26 @@ router.get('/orders', function(req, res, next) {
   })
 })
 
+router.get('/cart/add/:id', function (req, res, next) {
+  var productId = req.params.id
+  var cart = new Cart(req.session.cart)
+
+  Product.findById(productId, function(err, product){
+    if (err) {
+      return res.redirect('/')
+    }
+    cart.add(product, product.id)
+    req.session.cart = cart
+    res.redirect('/cart')
+  })
+})
+
+
+router.get('/cart/reduce/:id', function (req, res, next) {
+  var productId = req.params.id
+  var cart = new Cart(req.session.cart)
+  cart.reduceByOne(productId)
+  req.session.cart = cart
+  res.redirect('/cart')
+})
 module.exports = router;
