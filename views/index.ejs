@@ -1,0 +1,30 @@
+<%- include ./partials/header %>
+  <%if(!noMessages) {%>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div id="success" class="alert alert-success">
+        <%= successMsg %>
+      </div>
+    </div>
+  </div>
+  <% }%>
+<% products.forEach(function(productRow){ %>
+  <div class="row">
+    <% productRow.forEach(function(product){ %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="<%= product.imagePath %>" alt="...">
+        <div class="caption">
+          <h3><%= product.title %></h3>
+          <p><%= product.description %></p>
+          <p><%= product.price %> $</p>
+          <p><a href="/add-to-cart/<%= product._id %>" class="btn btn-success" role="button">Buy</a></p>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+
+<% })%>
+
+<%- include ./partials/footer %>

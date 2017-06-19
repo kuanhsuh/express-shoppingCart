@@ -1,0 +1,36 @@
+<%- include ./partials/header %>
+
+  <h1>Checkout</h1>
+  <h3>Your Total: <%= session.cart.totalPrice %> $</h3>
+<div id="charge-error" class="alert alert-danger <% if(noErrors){ %>
+      hidden <% } %>">
+        <%= errMsg %>
+      </div>
+  <form action="/checkout" method="post" id="payment-form">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input name="name" type="text" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Address</label>
+          <input name="address" type="text" id="address" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="card-element">Credit Card</label>
+          <div id="card-element">
+          <!-- a Stripe Element will be inserted here. -->
+          </div>
+
+          <!-- Used to display form errors -->
+          <div id="card-errors" role="alert"></div>
+        </div>
+        <button class="btn btn-success">Buy Now</button>
+      </div>
+    </div>
+  </form>
+
+  <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript" src="javascripts/checkout.js"></script>
+  <%- include ./partials/footer %>

@@ -1,0 +1,39 @@
+<%- include ./partials/header %>
+
+  <h1>Cart</h1>
+  <% if(products){ %>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products.forEach(function(product){ %>
+            <tr>
+              <td><%= product.item.title %></td>
+              <td>x <%= product.qty %></td>
+              <td><%= product.item.price %>$</td>
+              <td><%= product.price %>$</td>
+            </tr>
+          <% }) %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3"></td>
+            <td><strong>Total: <%= totalPrice %>$</strong></td>
+          </tr>
+          <tr>
+            <td colspan="3"></td>
+            <td><a href="/checkout" class="btn btn-success btn-lg">Checkout</a></td>
+          </tr>
+        </tfoot>
+      </table>
+  <% } else { %>
+    <h1>No Item In Cart</h1>
+  <% } %>
+
+  <%- include ./partials/footer %>
